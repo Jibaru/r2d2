@@ -14,18 +14,19 @@
 		"db:push": "drizzle-kit push"
 	},
 	"dependencies": {
-		"next": "^15",
-		"react": "^18",
-		"react-dom": "^18",
 		"@elevenlabs/elevenlabs-js": "latest",
 		"@radix-ui/react-slot": "^1.1.0",
+		"@uploadthing/react": "^7.3.3",
 		"class-variance-authority": "^0.7.0",
 		"clsx": "^2.1.1",
-		"lucide-react": "^0.460.0",
-		"tailwind-merge": "^2.5.3",
 		"drizzle-orm": "^0.36.4",
+		"lucide-react": "^0.460.0",
+		"nanoid": "^5.0.9",
+		"next": "^15",
 		"postgres": "^3.4.5",
-		"nanoid": "^5.0.9"
+		"react": "^18",
+		"react-dom": "^18",
+		"tailwind-merge": "^2.5.3"
 	},
 	"devDependencies": {
 		"typescript": "^5",

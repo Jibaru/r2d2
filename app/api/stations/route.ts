@@ -21,7 +21,7 @@ export async function POST(request: NextRequest) {
 		}
 
 		const savedStation = await stationRepo.create(stationProfile);
-		const responseStation = stationRepo.toStationProfile(savedStation);
+		const responseStation = await stationRepo.toStationProfile(savedStation);
 
 		return Response.json(responseStation);
 	} catch (error) {
@@ -40,8 +40,8 @@ export async function GET(request: NextRequest) {
 		const offset = Number(searchParams.get("offset")) || 0;
 
 		const stations = await stationRepo.list(limit, offset);
-		const responseStations = stations.map((station) =>
-			stationRepo.toStationProfile(station),
+		const responseStations = await Promise.all(
+			stations.map((station) => stationRepo.toStationProfile(station)),
 		);
 
 		return Response.json(responseStations);

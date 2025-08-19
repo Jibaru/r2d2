@@ -43,6 +43,7 @@ export function useQueue(stationProfile?: StationProfile) {
 					url: data.url,
 					metadata: data.metadata,
 					state: "ready",
+					stationId,
 				};
 			} catch (error) {
 				console.error("Track generation failed:", error);
@@ -54,6 +55,7 @@ export function useQueue(stationProfile?: StationProfile) {
 						generatedAt: new Date(),
 					},
 					state: "failed",
+					stationId,
 				};
 			}
 		},
@@ -150,10 +152,19 @@ export function useQueue(stationProfile?: StationProfile) {
 		prefetchNext();
 	}, [prefetchNext]);
 
-	// Initialize queue with first tracks
+	// Initialize queue with existing tracks from station profile or generate new ones
 	useEffect(() => {
 		if (stationProfile && queue.tracks.length === 0) {
-			prefetchNext();
+			// Load existing tracks from station profile if available
+			if (stationProfile.tracks && stationProfile.tracks.length > 0) {
+				setQueue((prev) => ({
+					...prev,
+					tracks: stationProfile.tracks || [],
+				}));
+			} else {
+				// Generate new tracks if none exist
+				prefetchNext();
+			}
 		}
 	}, [stationProfile, queue.tracks.length, prefetchNext]);
 

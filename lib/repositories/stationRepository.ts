@@ -2,6 +2,7 @@ import { eq } from "drizzle-orm";
 import { db } from "@/lib/db/connection";
 import { stations, type StationContent } from "@/lib/db/schema";
 import type { StationProfile } from "@/lib/types";
+import { TrackRepository } from "./trackRepository";
 
 export interface StationData {
 	id: string;
@@ -74,12 +75,17 @@ export class StationRepository {
 			.orderBy(stations.createdAt);
 	}
 
-	toStationProfile(stationData: StationData): StationProfile {
+	async toStationProfile(stationData: StationData): Promise<StationProfile> {
+		const trackRepo = new TrackRepository();
+		const trackData = await trackRepo.findByStationId(stationData.id);
+		const tracks = trackData.map((track) => trackRepo.toTrack(track));
+
 		return {
 			id: stationData.id,
 			requiredGenres: stationData.content.requiredGenres,
 			selectedStyles: stationData.content.selectedStyles,
 			seed: stationData.content.seed,
+			tracks,
 		};
 	}
 }

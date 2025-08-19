@@ -3,6 +3,7 @@ export interface StationProfile {
 	requiredGenres: string[];
 	selectedStyles: string[];
 	seed?: string | number;
+	tracks?: Track[];
 }
 
 export interface Track {
@@ -11,6 +12,9 @@ export interface Track {
 	metadata: TrackMetadata;
 	duration?: number;
 	state: TrackState;
+	stationId: string;
+	filePath?: string;
+	orderIndex?: number;
 }
 
 export interface TrackMetadata {

@@ -5,16 +5,17 @@ const stationRepo = new StationRepository();
 
 export async function GET(
 	request: NextRequest,
-	{ params }: { params: { id: string } },
+	{ params }: { params: Promise<{ id: string }> },
 ) {
 	try {
-		const stationData = await stationRepo.findById(params.id);
+		const resolvedParams = await params;
+		const stationData = await stationRepo.findById(resolvedParams.id);
 
 		if (!stationData) {
 			return Response.json({ error: "Station not found" }, { status: 404 });
 		}
 
-		const station = stationRepo.toStationProfile(stationData);
+		const station = await stationRepo.toStationProfile(stationData);
 		return Response.json(station);
 	} catch (error) {
 		console.error("Failed to fetch station:", error);
@@ -24,17 +25,18 @@ export async function GET(
 
 export async function PUT(
 	request: NextRequest,
-	{ params }: { params: { id: string } },
+	{ params }: { params: Promise<{ id: string }> },
 ) {
 	try {
+		const resolvedParams = await params;
 		const updates = await request.json();
-		const updatedStation = await stationRepo.update(params.id, updates);
+		const updatedStation = await stationRepo.update(resolvedParams.id, updates);
 
 		if (!updatedStation) {
 			return Response.json({ error: "Station not found" }, { status: 404 });
 		}
 
-		const station = stationRepo.toStationProfile(updatedStation);
+		const station = await stationRepo.toStationProfile(updatedStation);
 		return Response.json(station);
 	} catch (error) {
 		console.error("Failed to update station:", error);
@@ -47,10 +49,11 @@ export async function PUT(
 
 export async function DELETE(
 	request: NextRequest,
-	{ params }: { params: { id: string } },
+	{ params }: { params: Promise<{ id: string }> },
 ) {
 	try {
-		const deleted = await stationRepo.delete(params.id);
+		const resolvedParams = await params;
+		const deleted = await stationRepo.delete(resolvedParams.id);
 
 		if (!deleted) {
 			return Response.json({ error: "Station not found" }, { status: 404 });

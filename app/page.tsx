@@ -53,13 +53,6 @@ export default function Home() {
 					>
 						Create Station
 					</button>
-
-					<a
-						href="/station/demo"
-						className="flex h-10 items-center justify-center gap-2 rounded-full border border-foreground border-solid px-4 text-foreground text-sm transition-colors hover:bg-foreground hover:text-background sm:h-12 sm:px-5 sm:text-base"
-					>
-						Try Demo Station
-					</a>
 				</div>
 			</main>
 		</div>

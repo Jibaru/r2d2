@@ -15,20 +15,6 @@ async function fetchStationById(id: string): Promise<StationProfile | null> {
 		return await response.json();
 	} catch (error) {
 		console.error("Error fetching station:", error);
-		// Fallback to demo data if database fails
-		if (id === "demo") {
-			return {
-				id,
-				requiredGenres: ["lofi"],
-				selectedStyles: [
-					"lofi hip-hop",
-					"chilled piano lofi",
-					"nostalgic lofi",
-					"study lofi",
-				],
-				seed: "demo-seed",
-			};
-		}
 		return null;
 	}
 }

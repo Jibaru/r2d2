@@ -120,7 +120,7 @@ export class TrackRepository {
 		return {
 			id: trackData.id,
 			stationId: trackData.stationId,
-			url: `/api/music/cache/${trackData.id}`,
+			url: content.filePath, // Use the UploadThing URL stored in filePath
 			filePath: content.filePath,
 			duration: content.duration,
 			orderIndex: trackData.orderIndex,

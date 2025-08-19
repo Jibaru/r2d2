@@ -19,6 +19,7 @@ export function useQueue(stationProfile?: StationProfile) {
 	const audioRef = useRef<HTMLAudioElement | null>(null);
 	const [currentTime, setCurrentTime] = useState(0);
 	const [duration, setDuration] = useState(0);
+	const isGeneratingRef = useRef(false); // Client-side generation lock
 
 	const generateTrack = useCallback(
 		async (stationId: string): Promise<Track> => {
@@ -63,22 +64,36 @@ export function useQueue(stationProfile?: StationProfile) {
 	);
 
 	const prefetchNext = useCallback(async () => {
-		if (!stationProfile) return;
+		if (!stationProfile || isGeneratingRef.current) return;
 
 		const tracksToGenerate =
 			PREFETCH_THRESHOLD - (queue.tracks.length - queue.currentIndex - 1);
 
 		if (tracksToGenerate > 0) {
-			const promises = Array.from({ length: tracksToGenerate }, () =>
-				generateTrack(stationProfile.id),
-			);
+			isGeneratingRef.current = true; // Acquire client-side lock
 
-			const newTracks = await Promise.all(promises);
+			try {
+				// Generate tracks sequentially, one by one
+				for (let i = 0; i < tracksToGenerate; i++) {
+					try {
+						console.log(`Generating track ${i + 1} of ${tracksToGenerate}...`);
+						const track = await generateTrack(stationProfile.id);
 
-			setQueue((prev) => ({
-				...prev,
-				tracks: [...prev.tracks, ...newTracks],
-			}));
+						// Add track to queue immediately after generation
+						setQueue((prev) => ({
+							...prev,
+							tracks: [...prev.tracks, track],
+						}));
+
+						console.log(`Track ${i + 1} generated successfully`);
+					} catch (error) {
+						console.error(`Failed to generate track ${i + 1}:`, error);
+						// Continue with next track even if one fails
+					}
+				}
+			} finally {
+				isGeneratingRef.current = false; // Release client-side lock
+			}
 		}
 	}, [stationProfile, queue.tracks.length, queue.currentIndex, generateTrack]);
 

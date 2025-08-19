@@ -14,8 +14,8 @@ export function GenreSelector({
 
 	return (
 		<div className="space-y-4">
-			<h3 className="text-lg font-semibold">Required Genres</h3>
-			<p className="text-sm text-muted-foreground">
+			<h3 className="font-semibold text-lg">Required Genres</h3>
+			<p className="text-muted-foreground text-sm">
 				Select the genres that must be included in your station
 			</p>
 

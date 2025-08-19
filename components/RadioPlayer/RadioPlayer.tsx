@@ -27,7 +27,7 @@ export function RadioPlayer({ stationProfile, stationName }: RadioPlayerProps) {
 	const isLoading = !currentTrack || currentTrack.state === "generating";
 
 	return (
-		<Card className="max-w-md mx-auto">
+		<Card className="mx-auto max-w-md">
 			<CardContent className="p-6">
 				<TrackInfo track={currentTrack} stationName={stationName} />
 
@@ -46,13 +46,13 @@ export function RadioPlayer({ stationProfile, stationName }: RadioPlayerProps) {
 
 				{isLoading && (
 					<div className="mt-4 text-center">
-						<p className="text-sm text-muted-foreground">Generating track...</p>
+						<p className="text-muted-foreground text-sm">Generating track...</p>
 					</div>
 				)}
 
 				{currentTrack?.state === "failed" && (
 					<div className="mt-4 text-center">
-						<p className="text-sm text-destructive">
+						<p className="text-destructive text-sm">
 							Failed to generate track. Trying next...
 						</p>
 					</div>

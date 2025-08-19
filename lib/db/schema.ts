@@ -1,4 +1,4 @@
-import { pgTable, text, timestamp, jsonb, integer } from "drizzle-orm/pg-core";
+import { integer, jsonb, pgTable, text, timestamp } from "drizzle-orm/pg-core";
 
 export interface StationContent {
 	requiredGenres: string[];

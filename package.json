@@ -7,8 +7,8 @@
 		"build": "next build",
 		"start": "next start",
 		"format": "biome format --write",
-		"lint": "biome check",
-		"prepare": "biome format --write && biome check",
+		"lint": "biome check --write --unsafe --config-path=.biome/biome.json",
+		"prepare": "biome format --write --config-path=.biome/biome.json && biome check --write --unsafe --config-path=.biome/biome.json",
 		"db:generate": "drizzle-kit generate",
 		"db:migrate": "drizzle-kit migrate",
 		"db:push": "drizzle-kit push"

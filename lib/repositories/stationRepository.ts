@@ -1,7 +1,7 @@
-import { eq } from "drizzle-orm";
 import { db } from "@/lib/db/connection";
-import { stations, type StationContent } from "@/lib/db/schema";
+import { type StationContent, stations } from "@/lib/db/schema";
 import type { StationProfile } from "@/lib/types";
+import { eq } from "drizzle-orm";
 import { TrackRepository } from "./trackRepository";
 
 export interface StationData {

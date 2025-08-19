@@ -18,7 +18,7 @@ export function ProgressBar({ currentTime, duration }: ProgressBarProps) {
 				{formatTime(currentTime)}
 			</span>
 
-			<div className="flex-1 h-2 bg-foreground bg-opacity-20 rounded-full overflow-hidden">
+			<div className="h-2 flex-1 overflow-hidden rounded-full bg-foreground bg-opacity-20">
 				<div
 					className="h-full bg-foreground transition-all duration-300 ease-out"
 					style={{ width: `${progress}%` }}

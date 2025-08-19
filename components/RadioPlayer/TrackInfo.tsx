@@ -9,7 +9,7 @@ interface TrackInfoProps {
 export function TrackInfo({ track, stationName }: TrackInfoProps) {
 	if (!track) {
 		return (
-			<div className="text-center py-4">
+			<div className="py-4 text-center">
 				<p className="text-muted-foreground">No track loaded</p>
 			</div>
 		);
@@ -23,7 +23,7 @@ export function TrackInfo({ track, stationName }: TrackInfoProps) {
 			<p className="text-muted-foreground">
 				{stationName || track.metadata.genre}
 			</p>
-			<div className="flex flex-wrap gap-1 justify-center mt-2">
+			<div className="mt-2 flex flex-wrap justify-center gap-1">
 				{track.metadata.styles.map((style) => (
 					<Badge key={style} variant="secondary">
 						{style}

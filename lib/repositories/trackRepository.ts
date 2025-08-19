@@ -1,8 +1,8 @@
-import { eq, and, desc } from "drizzle-orm";
-import { nanoid } from "nanoid";
 import { db } from "@/lib/db/connection";
-import { tracks, type TrackContent } from "@/lib/db/schema";
-import type { Track, TrackMetadata } from "@/lib/types";
+import { type TrackContent, tracks } from "@/lib/db/schema";
+import type { Track } from "@/lib/types";
+import { desc, eq } from "drizzle-orm";
+import { nanoid } from "nanoid";
 
 export interface TrackData {
 	id: string;

@@ -92,9 +92,9 @@ export function RouletteWheel({ onStationCreated }: RouletteWheelProps) {
 	const canCreate = currentStyles.length > 0;
 
 	return (
-		<div className="max-w-2xl mx-auto space-y-6">
+		<div className="mx-auto max-w-2xl space-y-6">
 			<div className="text-center">
-				<h2 className="text-2xl font-bold mb-2">Station Roulette</h2>
+				<h2 className="mb-2 font-bold text-2xl">Station Roulette</h2>
 				<p className="text-muted-foreground">
 					Create your perfect radio station by selecting genres and spinning the
 					style roulette
@@ -110,7 +110,7 @@ export function RouletteWheel({ onStationCreated }: RouletteWheelProps) {
 				<div>
 					<label
 						htmlFor="styles-per-genre"
-						className="block text-sm font-medium mb-2"
+						className="mb-2 block font-medium text-sm"
 					>
 						Styles per genre: {stylesPerGenre}
 					</label>
@@ -125,7 +125,7 @@ export function RouletteWheel({ onStationCreated }: RouletteWheelProps) {
 					/>
 				</div>
 
-				<div className="flex gap-3 justify-center">
+				<div className="flex justify-center gap-3">
 					<Button onClick={spinRoulette} disabled={!canSpin} size="lg">
 						🎲 Spin Roulette
 					</Button>
@@ -139,7 +139,7 @@ export function RouletteWheel({ onStationCreated }: RouletteWheelProps) {
 			</div>
 
 			{currentStyles.length > 0 && (
-				<div className="border rounded-lg p-4 space-y-4">
+				<div className="space-y-4 rounded-lg border p-4">
 					<StylesDisplay styles={currentStyles} title="Your Station Styles" />
 
 					<div className="text-center">

@@ -21,11 +21,11 @@ export default function Home() {
 				<div className="container mx-auto px-4 py-8">
 					<RouletteWheel onStationCreated={handleStationCreated} />
 
-					<div className="text-center mt-8">
+					<div className="mt-8 text-center">
 						<button
 							type="button"
 							onClick={() => setShowRoulette(false)}
-							className="text-foreground opacity-70 hover:opacity-100 underline"
+							className="text-foreground underline opacity-70 hover:opacity-100"
 						>
 							← Back to home
 						</button>
@@ -36,27 +36,27 @@ export default function Home() {
 	}
 
 	return (
-		<div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-			<main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-				<h1 className="text-4xl font-bold text-center sm:text-left">
+		<div className="grid min-h-screen grid-rows-[20px_1fr_20px] items-center justify-items-center gap-16 p-8 pb-20 sm:p-20">
+			<main className="row-start-2 flex flex-col items-center gap-8 sm:items-start">
+				<h1 className="text-center font-bold text-4xl sm:text-left">
 					r2d2 Music Radio
 				</h1>
-				<p className="text-center sm:text-left max-w-md">
+				<p className="max-w-md text-center sm:text-left">
 					Create on-demand radio stations with AI-generated music based on your
 					favorite genres and styles.
 				</p>
-				<div className="flex gap-4 items-center flex-col sm:flex-row">
+				<div className="flex flex-col items-center gap-4 sm:flex-row">
 					<button
 						type="button"
 						onClick={() => setShowRoulette(true)}
-						className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
+						className="flex h-10 items-center justify-center gap-2 rounded-full border border-transparent border-solid bg-foreground px-4 text-background text-sm transition-colors hover:bg-[#383838] sm:h-12 sm:px-5 sm:text-base dark:hover:bg-[#ccc]"
 					>
 						Create Station
 					</button>
 
 					<a
 						href="/station/demo"
-						className="rounded-full border border-solid border-foreground transition-colors flex items-center justify-center text-foreground gap-2 hover:bg-foreground hover:text-background text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
+						className="flex h-10 items-center justify-center gap-2 rounded-full border border-foreground border-solid px-4 text-foreground text-sm transition-colors hover:bg-foreground hover:text-background sm:h-12 sm:px-5 sm:text-base"
 					>
 						Try Demo Station
 					</a>

@@ -1,0 +1,13 @@
+{
+	"permissions": {
+		"allow": [
+			"Bash(bun install:*)",
+			"Bash(mkdir:*)",
+			"Bash(biome format:*)",
+			"Bash(bunx biome format:*)",
+			"Bash(bunx:*)"
+		],
+		"deny": [],
+		"ask": []
+	}
+}

@@ -12,7 +12,7 @@
         "drizzle-orm": "^0.36.4",
         "lucide-react": "^0.460.0",
         "nanoid": "^5.0.9",
-        "next": "^15",
+        "next": "^15.0.5",
         "postgres": "^3.4.5",
         "react": "^18",
         "react-dom": "^18",
